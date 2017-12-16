@@ -1,0 +1,65 @@
+<html>
+	<title>test.html</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		.hot{
+			background-color: red
+		},
+		.complete{
+			background-color: yellow
+		}
+		.headline{
+			background-color: green
+		}
+	</style>
+	<body>
+		<div id="page">
+			<h1 id="header2">List</h1>
+			<h2>Buy groceries</h2>
+			<ul>
+				<li id="one" class="hot"><em>fresh</em> figs</li>
+				<li id="two" class="hot">pine nuts</li>
+				<li id="three" class="hot">honey</li>
+				<li id="four">balsamic vinegar</li>
+				<li id="five"><input type="text" value="inputtext"></li>
+			</ul>
+		</div>
+		<div id="center">
+			<input type="text" id="id1"><br/>
+			<div id="d2">
+				<div id="d3">
+					<h3 id="h1">
+						<span id="s1">YOU CAN CLICK THIS</span>
+						<ul>
+							<li class="hot">A people</li>
+							<li class="hot">Two people</li>
+							<li class="headline">Three people</li>
+							<li class="hot">Four people</li>
+						</ul>
+					</h3>
+				</div>
+			</div>
+		</div>
+		<div>
+			<a href="?path=1-simplejquery.js">1-simplejquery.js</a><br />
+			<a href="?path=event.js">event.js</a><br />
+			<a href="?path=texiao.js">texiao.js</a><br />
+			<a href="?path=dom.js">dom.js</a><br />
+		</div>
+		<script type="text/javascript" src="jquery-3.2.1.js"></script>
+		<script type="text/javascript">
+		if(document.location.href.indexOf("?") > 0){
+			var runJsPath = document.location.href.split("?")[1].split("=")[1];
+			var jsPath = '<script src="' + runJsPath + '"><\/script>';
+			document.write(jsPath);
+		}
+		function br(){
+			document.write("<br/>");
+		}
+		function wb(text){
+			//2017-12-02 12:04
+			document.write(text + "<br/>");
+		}
+	</script>
+	</body>
+</html>

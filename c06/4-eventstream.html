@@ -1,0 +1,36 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>事件流的不同方式</title>
+	</head>
+	<body>
+		<ul>
+			<li>
+				<a href="#" id="somea">clickMeFindTheEvent</a>
+			</li>
+		</ul>
+		<a href="?path=eventstream.js">捕获-eventstream.js</a>
+		<br/>
+		<a href="?path=eventstream.js&maopao=true">冒泡-eventstream.js</a>
+		<br/>
+		<a href="?path=target.js">事件对象-target.js</a>
+	</body>
+	<script type="text/javascript">
+		if(document.location.href.indexOf("?") > 0){
+			var runJsPath = document.location.href.split("?")[1].split("=")[1];
+			var index = runJsPath.indexOf('&');
+			if(index > 0){
+				runJsPath = runJsPath.substring(0, index);
+			}
+			var jsPath = '<script src="' + runJsPath + '"><\/script>';
+			document.write(jsPath);
+		}
+		function br(){
+			document.write("<br/>");
+		}
+		function wb(text){
+			//2017-12-02 12:04
+			document.write(text + "<br/>");
+		}
+	</script>
+</html>

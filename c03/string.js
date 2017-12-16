@@ -1,0 +1,14 @@
+document.write("全局对象：String p118");
+br();
+var say = "Home Sweet home 中国中";
+document.write("say.length:" + say.length);
+br();
+var index = say.indexOf('中国中');
+say = say.substring(index,  index + 3);
+document.write("say:" + say);
+br();
+document.write("say.length:" + say.length);
+br();
+document.write("say.replace('中', '强'):" + say.replace('中', '强'));
+br();
+document.write("now say:" + say);

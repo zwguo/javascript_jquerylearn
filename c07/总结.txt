@@ -1,0 +1,305 @@
+2017-12-10 11:33 第7章 jQuery p285
+
+7.1、介绍jQuery
+可使用$()来代替jQuery()，比如：
+	使用css样式选择器：$('li.hot'); 选择所有class属性为hot的li元素。
+	使用jQuery方法来操作元素：$('li.hot').addClass('complete');
+与DOM的不同之处在于：
+	它是跨浏览器的，不需要任何处理兼容性的后备代码；
+	选择元素更加简单并且更加精确；
+	事件处理也更加简单，因为它用了一个兼容于所有浏览器的方法；
+	方法会应用于所有选中的元素，不需要依次遍历每一个元素；
+	选择了一些元素之后，可以在其上应用多个方法；
+7.2、jQuery的座右铭
+写得少，干得多。
+7.3、查找元素
+*：所有的元素
+element：该名称的所有元素
+#id：拥有指定id的元素
+.class：拥有指定class属性的元素
+selector1, selector2：能匹配多个选择器的元素
+7.4、基本选择器
+ancestor descendant：一个元素是另外一个元素的后代，比如（li a）
+parent > child：一个与少年足额是另一个元素的直接子节点（另外可以在child位置使用*来代表该元素的所有子元素）
+previous + next：相邻的兄弟选择器，只会选中紧跟在前一个元素之后的另一个元素
+previous ~ siblings：兄弟选择器会选中前一个元素的所有兄弟元素
+7.5、基本筛选器
+:not(selector)：除选择器之外的所有元素（比如div:not('#summary'))
+:first：选中元素的第一个元素
+:last：选中元素的最后一个元素
+:even：选中元素中索引编号为偶数的元素
+:odd：选中元素中索引编号为奇数的元素
+:eq(index)：选中元素中索引编号为参数中指定数字的元素
+:gt(index)：选中元素中索引编号大于参数中指定数字的元素
+:lt(index)：选中元素中索引编号小于参数中指定数字的元素
+header：所有的<h1>到<h6>元素
+:animated：正在进行动画的元素
+:focus：当前拥有焦点的元素
+7.6、内容筛选器
+:contains('text')：包含指定文本的元素
+:empty：没有子节点的所有元素
+:parent：拥有子节点（文本或者子元素）的元素
+:has(selector)：至少包含一个匹配选择器的元素（例如，div:has(p)匹配所有包含<p>元素的div元素）
+7.7、可见性筛选器
+:hidden：所有隐藏的元素
+:visible：所有在页面布局中占据空间的元素
+		不会选中的元素包括：
+			display:none
+			height/width:0
+			祖先元素被隐藏
+		会选中的元素包括：
+			visibility:hidden
+			opacity:0
+		因为它们都会在布局中占据空间
+7.8、子节点筛选器
+:nth-child(expr)：参数中的值是从1开始的索引，比如 ul li:nth-child(2)
+:first-child：当前选中元素的第一个子节点
+:last-child：当前选中元素的最后一个子节点
+:only-child：当元素是父元素中唯一的子节点时（div p:only-child)
+7.9、属性筛选器
+[attribute]：拥有指定属性的元素（属性值不限）
+[attribute='value']：拥有指定属性，且值为指定值的元素
+[attribute!='value']：拥有指定属性，且值不为指定值的元素
+[attribute^='value']：拥有指定属性，且值以特定值开头的元素
+[attribute$='value']：拥有指定属性，且值为指定值结尾的元素
+[attribute*='value']：拥有指定属性，且值包含指定值的元素
+[attribute|='value']：拥有指定属性，且值包含指定值或特定值后加一个连字符开头的元素
+[attribute~='value']：拥有指定属性，且指定值应该为空格分隔的多个值中的一个
+[attribute][attribute2]：匹配所有选择器的元素
+7.10、表单
+:input：所有的input元素
+:text：所有的文本类型的input元素
+:password：所有的密码类型的input元素
+:radio：所有的单选按钮
+:checkbox：所有的复选框
+:submit：所有的提交按钮
+:image：所有的图片按钮
+:reset：所有的重置按钮
+:button：所有的<button>元素
+:file：所有的文件选择器
+:selected：下拉列表中所有被选中的列表项
+:enabled：所有可用的表单元素（所有表单元素的默认状态）
+:disabled：所有被禁用的表单元素（使用css的disabled属性）
+:checked：所有被选中的单选按钮或复选框
+7.11、在选中元素上执行操作
+内容操作
+	获取/更改内容
+		.html()：如果有多个元素，只会返回第一个元素的内容，如想获取多有元素则可以使用.each()方法；但是如果是设置的话：.html('<br/>')则会把所有的元素内容都更新。
+		.text()：如果有多个元素，则全部返回（包括后代元素）的文本；如果想要获取<input>或<textarea>的内容，则使用.val()方法。
+		.replaceWith()
+		.remove()
+	元素
+		.before()
+		.after()
+		.prepend()
+		.append()
+		.remove()
+		.clone()
+		.unwrap()
+		.detach()
+		.empty()
+		.add()
+	属性
+		.attr()
+		.removeAttr()
+		.addClass()
+		.removeClass()
+		.css()
+	表单值
+		.val()
+		.isNumeric()
+查找元素
+	一般方法
+		.find()
+		.closest()
+		.parent()
+		.parents()
+		.children()
+		.siblings()
+		.next()
+		.nextAll()
+		.prev()
+		.prevAll()
+	筛选器/测试
+		.filter()
+		.not()
+		.has()
+		.is()
+		.contains()
+	选中元素的顺序
+		.eq()
+		.lt()
+		.gt()
+尺寸/位置
+	尺寸
+		.height()
+		.width()
+		.innerHeight()
+		.innerWidth()
+		.outerHeight()
+		.outerWidth()
+	位置
+		.offset()
+		.position()
+		.scrollLeft()
+		.scrollTop()
+特效和动画
+	BASIC
+		.show()
+		.hide()
+		.toggle()
+	FANDING
+		.fadeIn()
+		.fadeOut()
+		.fadeTo()
+		.fadeToggle()
+	SLIDING
+		.slideDown()
+		.slideUp()
+		.slideToggle()
+	CUSTOM
+		.delay()
+		.stop()
+		.animate()
+事件
+	文档/文件
+		.ready()
+		.load()
+	用户交互
+		.on()
+7.12、jQuery对象中保存对元素的引用
+当创建jQuery选取结果时，jQuery对象会保存DOM中元素的引用————但不会复制他们。像变量一样指向的是一块内存地址。
+jQuery对象会保存对元素的引用，把jQuery对象缓存在变量中，变量中就包含了对元素的引用。
+当变量包含一个jQuery对象时，通常都会在变量前加一个$符号，表示它是jQuery对象变量。
+7.13、循环
+比如$('li.hot').addClass('favour');是更新了所有的元素，jQuery选取结果这种能够更新所有元素的能力叫作：隐式迭代。
+如果要逐个获取，则可以使用.each()方法。
+7.14、链式操作
+如果需要在同一个选择结果上使用多个jQuery方法，可以同时列出这些方法：$('li[id!="one"]').hide().delay(500).fadeIn(1400);
+7.15、检测页面是否已经可用
+jQuery的.ready()方法用于检测页面是否已经准备好让你的代码进行操作。
+$(document)创建一个jQuery对象来表示当前页面，所以用：$(document).ready(function(){...})来启动一些js。
+也可以这样简写：$(function(){...});
+load事件
+	jQuery有一个.load()方法，会在load事件时触发，不过已经被.on()方法替代了，load事件会在页面及其所有资源（图片、CSS和脚本）都加载完之后触发。
+.ready()方法
+	其会检测浏览器是否支持DOMContentLoaded事件，因为这个事件是在DOM加载完之后立刻触发的（不会等待其他资源加载完）；
+	如果浏览器不支持，则jQuery会等待load事件的到来。
+	让脚本紧跟在</body>标签之前
+	这时HTML已经被加载到了DOM中，但是更为普遍的方法是使用.ready()方法。
+	$(document).ready(function(){
+	console.log('document.ready');
+	});
+	$(function(){
+		console.log('$(function(){})')
+	});
+	这两个方法都可以在页面加载完毕后执行，常用的是后一种。
+7.16、jquery事件名称
+用户界面：focus blur change
+键盘：input keydown keyup keypress
+鼠标：click dblclick mouseup mousedown mouseover mousemove mouseout hover*
+表单：submit select change
+文档：ready* load unload
+浏览器：error resize scroll
+其中星号的ready和hover是jquery新加的。
+7.17、事件
+事件对象e的属性：
+type：类型比如click、mouseover等；
+which：被按下的按钮或者键；
+data：当事件发生时传入该函数的一些额外信息；
+target：发生了这个事件的DOM元素；
+pageX：鼠标相对于可视区域左边缘的位置；
+pageY：鼠标相对于可视区域上边缘的位置；
+timeStamp：事件发生的事件，距离1970年1月1日的毫秒数，在firefox中无效；
+e的方法：
+.preventDefault()：阻止默认行为；
+.stopPropagation()：阻止冒泡。
+7.18、特效
+可以使用fadeOut()/fadeIn()来隐藏或者显示元素，里面可以设置数值，单位毫秒；
+同时可以使用slideUp()/slideDown()来以滑动特效的方式来显示或者隐藏元素，里面也可以设置数值，单位毫秒；
+也开始使用.animate()方法创建css属性动画，但是css属性的值必须是数值类型的，比如：
+$('li').on('click', function(){
+	$(this).animate({
+		opacity: 0.0,
+		paddingLeft: '+=80'
+	}, 500, function(){
+		$(this).remove();
+	});
+});
+7.19、遍历DOM
+方法：
+.find()：必须传入css样式作为筛选器，选择符合条件的所有结果；
+.closest()：必须传入css样式作为筛选器，会返回最近的祖先；
+.parent()
+.parents()
+.children()
+.siblings()
+.next()
+.nextAll()
+.prev()
+.prevAll()
+7.20、在选取结果中添加或筛选元素
+.add()：向结果集中添加新的元素；
+.filter()：在匹配中筛选元素；
+.find()：在后代中查找元素；
+.not()/:not()：查找不匹配的元素；
+.has()/:has()：在匹配结果中查找后代节点符合该选择器的元素；
+:contains()：选择所有包含指定文字的元素（参数是大小写敏感的）；
+.is()：检查当前筛选结果是否满足条件；
+上面带冒号的方法是可以用在css选择器上的，叫做伪选择器，且速度比方法调用快：
+$('li').not('.hot').addClass('cool');
+等价于：
+$('li:not(.hot)').addClass('cool');
+7.21、按顺序查找元素 p330
+每个由jquery选择器返回的元素都会拥有一个索引，可以使用该索引在结果中再次筛选，索引从0开始。
+$('li:lt(2)')：查找索引编号小于2的元素；
+$('li:gt(2)')：查找索引编号大于2的元素；
+$('li').eq(2)：查找索引编号为2的元素。
+7.22、选取表单元素
+此类方法是在jquery中查找，比较慢，应该先用其他方法查找一遍，最后采用此类方法过滤。
+:button： <button>元素或者属性值为button的<input>元素；
+:disabled：所有被禁用的元素；
+:file：所有文件选择器元素；
+:focus：当前焦点所在的元素；
+:selected：所有被选中的元素；
+:text：所有type属性值为text或未指定type的<input>元素；但使用('input:text')性能会更高。
+.val()：获取input、select、textarea元素的值，或者设置值；
+$.isNumeric()：检查值是否是一个数字并返回一个布尔结果。比如：$.isNumeric(0xFF) = True;
+表单的方法和事件：
+.on()：用来处理所有事件，有：blur、change、focus、select、submit。
+7.23、剪切和复制元素
+.remove()：从dom中移除元素及后代；
+.detach()：与remove相同，不过会在内存中保留副本；
+.empty()：移除子节点及后代节点；
+.unwrap()：移除父节点；
+.clone()：创建匹配结果及其后代和文本节点的副本，如果要copy事件处理程序，则参数传入true；
+7.24、HTML框模型的尺寸
+CSS会把页面中的每个元素视为处在一个由其自身构成的“框”中，每个框都有：
+外边距
+	 边框
+	 	 内边距
+	 	 	  内容
+	 	 内边距
+	 边框
+外边距
+有如下获取方法：
+.height()：框的高度（不含内外边距和边框）；
+.width()：框的宽度（不含内外边距和边框）；
+.innerHeight()：框的高度+内边距；
+.innerWidth()：框的宽度+内边距；
+.outerHeight()：框的高度+内边距+边框；
+.outerWidth()：框的宽度+内边距+边框；
+.outerHeight(true)：框的高度+内边距+边框+外边距；
+.outerWidth(true)：框的宽度+内边距+边框+外边距；
+$(window).height()这个方法通常返回错误的结果，除非在页面使用<!DOCTYPE html>声明。
+7.25、CDN
+CDN是一组遍布在全球的服务器。它们被设计用来快速提供方静态文件（比如HTML、CSS、JavaScript、图片、音视频文件等）的访问。
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>
+	window.jQuery || document.write('<script src="js/jquery-1.10.2.js"></script>')
+</script>
+2017-12-16 20：47分看完第7章。
+
+
+
+

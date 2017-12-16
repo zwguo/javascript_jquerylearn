@@ -1,0 +1,37 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>2-DOM-EVENT-FORM-WITHPARA</title>
+		<script type="text/javascript">
+		</script>
+	</head>
+	<body>
+		<form method="post" action="http://www.baidu.com/register">
+			<label for="username">Create a username:</label>
+			<input type="text" id="username"/>
+			<div id="feeback"></div>
+
+			<label for="password">Create a password:</label>
+			<input type="password" id="password" />
+			<br/>
+
+			<input type="submit" value="Sign up!" />
+		</form>
+		
+		<a href="?path=check.js">check.js</a>
+	</body>
+	<script type="text/javascript">
+		if(document.location.href.indexOf("?") > 0){
+			var runJsPath = document.location.href.split("?")[1].split("=")[1];
+			var jsPath = '<script src="' + runJsPath + '"><\/script>';
+			document.write(jsPath);
+		}
+		function br(){
+			document.write("<br/>");
+		}
+		function wb(text){
+			//2017-12-02 12:04
+			document.write(text + "<br/>");
+		}
+	</script>
+</html>

@@ -1,0 +1,34 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>表单事件</title>
+	</head>
+	<body>
+		<form id="form1">
+			<label for="feelist">Select a package:</label>
+			<select id="choices">
+				<option value="month">MONTH</option>
+				<option value="year">YEAR</option>
+			</select>
+			<label id="msg"></label>
+			<input type="checkbox" id="deal" value="AGREE">
+			<br />
+			<input type="submit" value="submit" id="btnSubmit">
+		</form>
+		<a href="?path=form.js">form.js</a>
+	</body>
+	<script type="text/javascript">
+		if(document.location.href.indexOf("?") > 0){
+			var runJsPath = document.location.href.split("?")[1].split("=")[1];
+			var jsPath = '<script src="' + runJsPath + '"><\/script>';
+			document.write(jsPath);
+		}
+		function br(){
+			document.write("<br/>");
+		}
+		function wb(text){
+			//2017-12-02 12:04
+			document.write(text + "<br/>");
+		}
+	</script>
+</html>

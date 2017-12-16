@@ -1,0 +1,57 @@
+#总结
+3、创建对象的方法
+3.1、字面量语法
+var hotel = {}
+hotel.name = 'Query'
+或者
+var hotel = {
+	name : 'Query'
+}
+3.2、对象构造语法
+var hotel = new Object()
+hotel.name = 'Query'
+或者
+function Hotel(name){
+	this.name = name
+}
+var hotel1 = new Hotel('Query')
+3.3、存储数据
+在JavaScript中，数据以键/值对的形式存储。为了组织数据，可以使用数组或对象来组织一组相关的值。在数组和对象中，名字也称为键。
+变量：一个变量只有一个键（变量名）和一个值。
+当一个变量还未被赋值时，其值为undefined。
+数组定义是：var hotels = ['a', 'btest', '123']
+获取时使用下标：var first = hotels[0];数组顺序很重要，如果顺序不重
+要，可以使用对象。
+3.4、子对象
+数组可以存放一组对象，对象中的属性也可以是数组，对象的属性也可能是另一个对象，当一个对象被嵌套于另一个对象中时，我们称它为子对象。
+3.5、在线资源
+http://javascriptboook.com/resources
+3.6、三组内置对象
+浏览器对象模型：
+window：当前浏览器窗口或标签
+--document：窗口或标签
+--history：当前网页浏览过的网页
+--location：当前页的URL
+--navigator：浏览器的信息
+--screen：设备的显示信息
+文档对象模型：
+DOM为当前网页创建模型，最顶端的对象是document，代表整个页面。
+全局JavaScript对象：
+这些对象不构成模型，它们是一些独立的对象，分别与JavaScript语言的不同部分相关，比如String、Date对象，还有：Number、Boolean、Math、RegEx对象。
+3.7、数据类型
+JavaScript中有6种数据类型，包括5种简单（或基本）数据类型：
+	String
+	Number
+	Boolean
+	Undefined
+	Null
+复杂数据类型：
+	Object
+
+为什么基本类型还有方法或属性？因为JavaScript把所有变量当做对象对待。
+3.8、Date对象
+表示从1970年1月1日0点到现在的毫秒数，也成为Unix时间，也是UTC（世界标准时间）开始计算的毫秒数。
+
+
+
+
