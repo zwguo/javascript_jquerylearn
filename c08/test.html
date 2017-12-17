@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<title>test.html</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		.hot{
+			background-color: red
+		},
+		.complete{
+			background-color: yellow
+		}
+		.headline{
+			background-color: green
+		}
+	</style>
+	<body>
+		<div id="page">
+			<h1 id="header2">List</h1>
+			<h2>Buy groceries</h2>
+			<ul>
+				<li id="one" class="hot"><em>fresh</em> figs</li>
+				<li id="two" class="hot">pine nuts</li>
+				<li id="three" class="hot">honey</li>
+				<li id="four">balsamic vinegar</li>
+				<li id="five"><input type="text" value="inputtext"></li>
+			</ul>
+			<div>
+				<textarea id="res" rows="10" cols="30"></textarea>
+			</div>
+		</div>
+		<div>
+			<a href="?path=plainajax.js">plainajax.js</a><br />
+			<a href="?path=jsonp.js">jsonp.js</a><br />
+		</div>
+		<script type="text/javascript">
+		if(document.location.href.indexOf("?") > 0){
+			var runJsPath = document.location.href.split("?")[1].split("=")[1];
+			var jsPath = '<script src="' + runJsPath + '"><\/script>';
+			document.write(jsPath);
+		}
+		function br(){
+			document.write("<br/>");
+		}
+		function wb(text){
+			//2017-12-02 12:04
+			document.write(text + "<br/>");
+		}
+	</script>
+	</body>
+</html>
