@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>折叠面板</title>
+		<meta charset="utf-8">
+		<style type="text/css">
+			.accordion-panel{
+				display:none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="accordion">
+			<li>
+				<button class="accordion-control">Classics</button>
+				<div class="accordion-panel">Panel content goes here</div>
+				<button id="btn1">CLICK ME</button>
+			</li>
+			<li>
+				<button class="accordion-control">The Flower Series</button>
+				<div class="accordion-panel">Panel content goes here</div>
+			</li>
+			<li>
+				<button class="accordion-control">Salt O' the Sea</button>
+				<div class="accordion-panel">Panel content goes here</div>
+			</li>
+		</div>
+		<script type="text/javascript" src="jquery-3.2.1.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$('#btn1').on('click', function(){
+					alert(this.textContent);
+				});
+				$('.accordion').on('click', '.accordion-control', function(e){
+					e.preventDefault();
+					$(this).next('.accordion-panel').not(':animated').slideToggle();
+				});
+			});
+		</script>
+	</body>
+</html>

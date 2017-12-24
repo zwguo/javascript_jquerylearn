@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>jquery ui测试页面</title>
+		<link rel="stylesheet" type="text/css" href="jquery-ui-1.12.1/jquery-ui.css">
+	</head>
+	<body>
+		<div id="prizes">
+			<h3>lst Prize</h3>
+			<div><p>First prize is the DJI...</p></div>
+			<h3>2nd Prize</h3>
+			<div><p>Second prize is the DJI...</p></div>
+			<h3>3rd Prize</h3>
+			<div><p>Third prize is the DJI...</p></div>
+		</div>
+		<script type="text/javascript" src="jquery-3.2.1.js"></script>
+		<script type="text/javascript" src="jquery-ui-1.12.1/jquery-ui.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$('#prizes').accordion();
+			});
+		</script>
+	</body>
+</html>

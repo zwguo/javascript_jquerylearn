@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>测试处理异常</title>
+		<meta charset="utf-8">
+	</head>
+	<body>
+		<form>
+			<label for="nb">请输入数字</label>
+			<input type="text" id="nb">
+			<label id="result"></label><br/>
+			<input type="button" value="you can click">
+		</form>
+		<script type="text/javascript">
+			var res = '{"deals":[{"title":"Farrow and Ball"},{"title":"Other things}]}';
+
+			if(res){
+				try{
+					var dealData = JSON.parse(res);
+					document.write(dealData.deals[0].title);
+				} catch(e){
+					document.write("<span style='color:red'>FOUND ERROR</span>:" + e.name + ":" + e.message);
+				} finally{
+					document.write("<br/>all end");
+				}
+			}
+
+			document.getElementById('nb').addEventListener('blur', function(){
+				if(!isNaN(this.value)){
+					document.getElementById('result').innerText = "OK";
+				} else{
+					throw new Error(this.value + ' is not a number!');
+				}
+			});
+		</script>
+	</body>
+</html>

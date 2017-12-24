@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>模式窗口</title>
+		<meta charset="utf-8">
+		<style type="text/css">
+			.modal{
+				position: absolute;
+				z-index: 1000;
+				background-color: blue;
+			}
+			.red{
+				color:red;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="share">
+			<a href="#">分享</a>
+		</div>
+		<section>
+	      <img src="slide-1.jpg" alt="一个图片"/>
+	    </section>
+		<div id="share-options">
+			<h3 class="red">你可以分享它到需要的地方。</h3>
+		</div>
+		<script type="text/javascript" src="jquery-3.2.1.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				var modal = (function(){
+					var $window = $(window);
+					var $modal = $('<div class="modal" />');
+					var $content = $('<div class="modal-content" />');
+					var $close = $('<button role="button" class="modal-close">close</button>');
+					$modal.append($content, $close);
+
+					$close.on('click', function(e){
+						e.preventDefault();
+						modal.close();
+					});
+
+					return {
+						center:function(){
+							var top = Math.max($window.height() - $modal.outerHeight(), 0) / 2;
+							var left = Math.max($window.width() - $modal.outerWidth(), 0) / 2;
+							$modal.css({
+								top:top + $window.scrollTop(),
+								left:left + $window.scrollLeft()
+							});
+						},
+						open:function(settings){
+							$content.empty().append(settings.content);
+							$modal.css({
+								width:settings.width || 'auto',
+								height:settings.height || 'auto',
+								border:1
+							}).appendTo('body');
+							modal.center();
+							$(window).on('resize', modal.center);
+						},
+						close:function(){
+							$content.empty();
+							$modal.detach();
+							$(window).off('resize', modal.center);
+						}	
+					}
+				}());
+				var $content = $('#share-options').detach();
+				$('#share').on('click', function(){
+					modal.open({content:$content, width:340, height:300});
+				});
+			});
+		</script>
+	</body>
+</html>

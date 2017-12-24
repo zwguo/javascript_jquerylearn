@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>选项卡面板</title>
+		<meta charset="utf-8">
+		<style type="text/css">
+			.tab-panel{
+				display:none;
+			}
+			.tab-panel.active{
+				display: block;
+			}
+			.tab-list li {
+			  display: inline-block;
+			  list-style-type: none;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div class="tab-list">
+			<li class="active"><a class="tab-control" href="#tab-1">Description</a></li>
+			<li><a class="tab-control" href="#tab-2">Ingredients</a></li>
+			<li><a class="tab-control" href="#tab-3">Delivery</a></li>
+			<div class="tab-panel active" id="tab-1">Content 1...</div>
+			<div class="tab-panel" id="tab-2">Content 2...</div>
+			<div class="tab-panel" id="tab-3">Content 3...</div>
+		</div>
+		<script type="text/javascript" src="jquery-3.2.1.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$('.tab-list').each(function(){
+					var $this = $(this);
+					var $tab = $this.find('li.active');
+					var $link = $tab.find('a');
+					var $panel = $($link.attr('href'));
+
+					$(this).on('click', '.tab-control', function(e){
+						e.preventDefault();
+						var $link = $(this);
+						var id = this.hash;
+						if(id && !$link.is('.active')){
+							$panel.removeClass('active');
+							$tab.removeClass('active');
+							$panel = $(id).addClass('active');
+							$tab = $link.parent().addClass('active');
+						}
+					});
+				});
+			});
+		</script>
+	</body>
+</html>

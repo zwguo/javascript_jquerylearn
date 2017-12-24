@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html ng-app>
+	<head>
+		<meta charset="utf-8">
+		<title>AngularJS 测试页面-1</title>
+		<script type="text/javascript" src="angular.js"></script>
+	</head>
+	<body>
+		<form>
+			To:<br>
+			<input ng-model="name" type="text" /><br>
+			Message:<br>
+			<textarea ng-model="message"></textarea><br>
+			<input type="submit" value="send message" />
+		</form>
+		<div class="postcard">
+			<div>{{name}}</div>
+			<p>{{message}}</p>
+		</div>
+	</body>
+</html>

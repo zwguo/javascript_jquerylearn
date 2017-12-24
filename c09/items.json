@@ -1,0 +1,7 @@
+{
+	"sessions":[
+		{"time":"09:00", "title":"Intro to 3D Modeling", "detail":"Come..."},
+		{"time":"10:00", "title":"Circuit Hacking", "detail":"Head to the..."},
+		{"time":"11:30", "title":"Arduino Antics", "detail":"Learn how..."}
+	]
+}

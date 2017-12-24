@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app="myapp">
+	<head>
+		<meta charset="utf-8">
+		<title>AngularJS 测试页面-2</title>
+		<script type="text/javascript" src="angular.js"></script>
+	</head>
+	<body>
+		<table ng-controller="basketCtrl">
+			<tr><td>Item:</td><td>{{description}}</td></tr>
+			<tr><td>Cost:</td><td>{{cost}}</td></tr>
+			<tr><td>Qty:</td><td><input type="number" ng-model="qty"/></td></tr>
+			<tr><td>Subtotal:</td><td>{{qty * cost | currency}}</td></tr>
+		</table>
+
+		<script type="text/javascript">
+			var myappMoudle = angular.module('myapp', ['somecontroller']);
+
+			var controllerMoudle = angular.module('somecontroller', []);
+			controllerMoudle.controller('basketCtrl', function($scope){
+				$scope.description = "Single ticket";
+				$scope.cost = 8;
+				$scope.qty = 1;
+			});
+		</script>
+	</body>
+</html>

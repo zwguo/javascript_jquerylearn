@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>jquery ui form测试页面</title>
+		<link rel="stylesheet" type="text/css" href="jquery-ui-1.12.1/jquery-ui.css">
+	</head>
+	<body>
+		<h2>Find Accommondation</h2>
+		<p id="price">
+			<label for='amount'>Price range:</label>
+			<input type="text" id="amount"/>
+		</p>
+		<div id="price-range"></div>
+		<p>
+			<label for='arrival'>Arrival date:</label>
+			<input type="text" id="arrival" />
+		</p>
+		<input type="submit" value="Find a hotel" />
+		<script type="text/javascript" src="jquery-3.2.1.js"></script>
+		<script type="text/javascript" src="jquery-ui-1.12.1/jquery-ui.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$('#arrival').datepicker();
+				var amount = $('#amount');
+				var range = $('#price-range');
+
+				$('#price-range').slider({
+					range:true,
+					min:0,
+					max:400,
+					values:[175, 300],
+					slide:function(event, ui){
+						amount.val('$' + ui.values[0] + ' - $' + ui.values[1]);
+					}
+				});
+
+				amount.val('$' + range.slider('values', 0) + ' - $' + range.slider('values', 1));
+			});
+		</script>
+	</body>
+</html>

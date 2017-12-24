@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head><title>测试 API</title></head>
+<body>
+	<div>
+		<span id="loc"></span>
+	</div>
+	<script type="text/javascript" src="modernizr-custom.js"></script>
+	<script type="text/javascript">
+		if(Modernizr){
+			console.log(Modernizr);
+			if(Modernizr.geolocation){
+				console.log("Modernizr.geolocation : " + Modernizr.geolocation);
+
+				var elMap = document.getElementById('loc');
+				var msg = 'Sorry, we were unable to get your location.';
+				navigator.geolocation.getCurrentPosition(success, fail);
+				elMap.textContent = 'Checking location...手机测试OK';
+			}
+			else{
+				console.log("Modernizr.geolocation : not support!");
+			}
+		}
+		else{
+			console.log('Modernizr not support');
+		}
+
+		function success(position){
+			console.log('success');
+			msg = '<h3>Longitude:<br>';
+			msg += position.corrds.longitude + '</h3>';
+			msg = '<h3>Latitude:<br>';
+			msg += position.corrds.latitude + '</h3>';
+			elMap.innerHTML = msg;
+		}
+
+		function fail(msg){
+			console.log('fail');
+			elMap.textContent = msg;
+			console.log(msg.code);
+		}
+	</script>
+</body>
+</html>

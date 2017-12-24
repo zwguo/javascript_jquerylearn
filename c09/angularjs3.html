@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="myapp">
+	<head>
+		<meta charset="utf-8">
+		<title>AngularJS 测试页面-3</title>
+		<script type="text/javascript" src="angular.js"></script>
+	</head>
+	<body>
+		<table ng-controller="timetablecontroller">
+			<tr><th>time</th>></th>title<th></th>detail<th></th></tr>
+			<tr ng-repeat="session in sessions">
+				<td>{{session.time}}</td>
+				<td>{{session.title}}</td>
+				<td>{{session.detail}}</td>
+			</tr>
+		</table>
+
+		<script type="text/javascript">
+			var myappMoudle = angular.module('myapp', ['somecontroller']);
+
+			var controllerMoudle = angular.module('somecontroller', []);
+			controllerMoudle.controller('timetablecontroller', function($scope, $http){
+				$http.get('items.json')
+				.success(function(data){
+						$scope.sessions = data.sessions;
+				})
+				.error(function(data){
+					alert("error:" + data);
+				});
+			});
+		</script>
+	</body>
+</html>
